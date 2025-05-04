@@ -6,4 +6,4 @@ if __name__ == "__main__":
     import multiprocessing
 
     multiprocessing.freeze_support()
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=False, workers=1)
+    uvicorn.run(app, host="0.0.0.0", port=3000, reload=False, workers=1)
