@@ -20,10 +20,8 @@ def construct_data(row):
     if not row:
         return None
     return {"data_id": row[0],
-                 "sensor": row[1],
-                 "data_type": row[2],
-                 "value": row[3],
-                 "time": row[4]
+                 "message": row[1],
+                 "time": row[2]
                }
 
 
@@ -43,7 +41,7 @@ def init_db():
     db_cursor = db_con.cursor()
 
     db_cursor.execute(
-        """CREATE TABLE IF NOT EXISTS data (data_id INTEGER PRIMARY KEY, sensor TEXT NULL, data_type TEXT NULL, value TEXT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"""
+        """CREATE TABLE IF NOT EXISTS data (data_id INTEGER PRIMARY KEY, message TEXT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"""
     )
 
 
@@ -58,9 +56,10 @@ def reinit_db():
     init_db()
 
 
-def input_data_to_db(sensor: str, data_type: str, value: str):
+def input_data_to_db(message: dict):
+    message = str(message)
     query_db(
-        f"""INSERT INTO data (sensor, data_type, value) values ('{sensor}', '{data_type}', '{value}');"""
+        f"""INSERT INTO data (message) values ('{message}');"""
     )
 
 
@@ -71,10 +70,15 @@ def data_list_all():
     )
 
 
-def data_list_by_id(id):
+def data_list_by_id(id: int):
     return query_db(
-        f"""SELECT * FROM data WHERE data_id ={id}"""
+        f"""SELECT * FROM data WHERE data_id = {id}"""
     )[0]
+
+def data_list_latest():
+    return query_db(
+        f"""SELECT * FROM data ORDER BY data_id DESC LIMIT 1"""
+    )
 
 
 if __name__ == "__main__":
