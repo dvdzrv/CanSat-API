@@ -57,29 +57,30 @@ def reinit_db():
 
 
 def input_data_to_db(message: dict):
-    message = str(message)
+    message = str(message).replace("'", "\"")
+
     query_db(
-        f"""INSERT INTO data (message) values ('{message}');"""
+        f"""INSERT INTO data (data_id, message) VALUES(NULL, '{message}');"""
     )
 
 
 
 def data_list_all():
-    return query_db(
+    return construct_data_list( query_db(
         f"""SELECT * FROM data"""
+        )
     )
-
 
 def data_list_by_id(id: int):
-    return query_db(
+    return construct_data( query_db(
         f"""SELECT * FROM data WHERE data_id = {id}"""
-    )[0]
-
-def data_list_latest():
-    return query_db(
-        f"""SELECT * FROM data ORDER BY data_id DESC LIMIT 1"""
+        )[0]
     )
-
+def data_list_latest():
+    return construct_data( query_db(
+        f"""SELECT * FROM data ORDER BY data_id DESC LIMIT 1"""
+        )[0]
+    )
 
 if __name__ == "__main__":
     init_db()
