@@ -21,7 +21,7 @@ dnf==4.23.0
 dotenv==0.9.9
 dotenv-python==0.0.1
 evdev==1.9.1
-fastapi==0.115.11
+fastapi~=0.115.12
 fedora-third-party==0.10
 file-magic==0.4.0
 h11==0.14.0
@@ -97,5 +97,7 @@ starlette==0.46.1
 systemd-python==235
 typing_extensions==4.12.2
 urllib3==2.3.0
-uvicorn==0.34.0
+uvicorn~=0.34.2
 xkbregistry==0.3
+
+pyserial~=3.5

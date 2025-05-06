@@ -34,7 +34,7 @@ last_msg_time = datetime.now() - timedelta(seconds=10)
 
 @app.post("/message")
 async def rec_msg(message: dict):
-    message = str(message);
+    message = str(message)
     input_data_to_db(message)
     global last_msg_time
     last_msg_time = datetime.now()
