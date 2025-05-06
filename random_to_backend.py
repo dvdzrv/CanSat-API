@@ -3,8 +3,8 @@ from time import sleep
 
 import requests
 
-url = "http://194.160.224.5:3000/message"
-#url = "http://localhost:3000/message"
+#url = "http://194.160.224.5:3000/message"
+url = "http://localhost:3000/message"
 data_start = {
     "LON": random.randint(20, 25) * 100 / random.randrange(1, 5),
     "LAT": random.randint(20, 25) * 100 / random.randrange(1, 5),
