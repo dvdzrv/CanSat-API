@@ -56,7 +56,7 @@ def reinit_db():
     init_db()
 
 
-def input_data_to_db(message: dict):
+def input_data_to_db(message: str):
     message = str(message).replace("'", "\"")
 
     query_db(
